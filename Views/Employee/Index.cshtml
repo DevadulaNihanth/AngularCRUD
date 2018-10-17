@@ -1,0 +1,108 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EmployeeList</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="~/Scripts/Employee/Module.js"></script>
+    <script src="~/Scripts/Employee/Service.js"></script>
+    <script src="~/Scripts/Employee/Controller.js"></script>
+    
+   
+
+</head>
+<body ng-app="employeeCRUD">
+    <div ng-controller="employeeController">
+        <div>
+            <p><strong>Employee List</strong></p>
+
+            <span ng-click="SaveEmployeeDiv()" class="btn btn-primary">
+                Add Employee
+            </span>
+            <br /><br />
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <td class="text-center" style="background-color:darkgray;"><b>Employee ID</b></td>
+                    <td class="text-center" style="background-color:darkgray;"><b>Employee Name</b></td>
+                    <td class="text-center" style="background-color:darkgray;"><b>Basic Pay</b></td>
+                    <td class="text-center" style="background-color:darkgray;"><b>Allowance</b></td>
+                    <td class="text-center" style="background-color:darkgray;"><b>Action</b></td>
+                </tr>
+                <tr ng-repeat="employee in employeeList">
+                    <td class="text-center">
+                        {{employee.EmpID}}
+                    </td>
+                    <td>
+                        {{employee.EmpName}}
+                    </td>
+                    <td class="text-right">
+                        {{employee.BasicPay}}
+                    </td>
+                    <td class="text-right">
+                        {{employee.Allowance}}
+                    </td>
+
+                    <td class="text-center">
+                        <span ng-click="EditEmployee(employee)" class="btn btn-primary">Update</span>
+                        <span ng-click="DeleteEmployee(employee)" class="btn btn-danger">Delete</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div ng-show="divEmployee">
+            <p class="divHead"></p>
+            <table class="table">
+                <tr>
+                    <td><strong>{{Action}} Employee</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><b>Employee ID</b></td>
+                    <td>
+                        <input type="text" disabled="disabled" ng-model="EmpID" />
+                    </td>
+                    <td><b>Employee Name</b></td>
+                    <td>
+                        <input type="text" ng-model="EmpName" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Basic Pay</b></td>
+                    <td>
+                        <input type="text" ng-model="BasicPay" />
+                    </td>
+                    <td><b>Allowance</b></td>
+                    <td>
+                        <input type="text" ng-model="Allowance" />
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="button" class="btn btn-success" value="Save" ng-click="SaveEmployee()" />
+                        <input type="button" class="btn btn-danger" value="Cancel" ng-click="Cancel()" />
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
